@@ -1,0 +1,68 @@
+list of possible prompts:
+- what is the weather in {city}
+- what is the temperature 
+- what will the weather be tomorrow
+- what was the weather yesterday
+- what was the temperature yesterday
+- what will the temperature be tomorrow
+- is it sunny today
+- is it cloudy today
+- is it raining today
+
+EXPLANATIONS FOR FUNCTIONS
+get_temperature()
+This function retrieves the current temperature in Fahrenheit for the specified city.
+It takes the city parameter, which represents the city for which you want to retrieve the temperature.
+The function first calls get_weather_data(city) to fetch weather data for the specified city.
+If the response code ('cod') in the weather data is 200 (indicating a successful response), it extracts the temperature in Kelvin from the weather data.
+The function then converts the temperature from Kelvin to Fahrenheit using the formula (temperature_kelvin - 273.15) * 9/5 + 32.
+It returns the temperature in Fahrenheit as a floating-point value. If there's an issue with the request or data, it returns None.
+
+get_weather_description()
+This function retrieves the current weather description for the specified city.
+It takes the city parameter, indicating the city for which you want to fetch the weather description.
+Like the other functions, it begins by calling get_weather_data(city) to obtain weather data for the specified city.
+If the response code ('cod') in the weather data is 200, it extracts the weather description from the weather data.
+The function returns the weather description as a string. If there are issues with the request or data, it returns None.
+
+get_forecast():
+This function calculates the date for a weather forecast relative to the current date.
+It takes the city parameter to determine the city and the day_delta parameter to specify how many days in the future or past you want to forecast. A day_delta of 0 corresponds to the current date.
+The function uses the datetime module to calculate the target date based on the current date and day_delta.
+It returns the target date in the format '%Y-%m-%d'.
+
+get_weather():
+This function retrieves weather-related information for a specified city and optional day offset.
+It takes the city parameter to identify the city for which you want the weather information.
+The day_delta parameter is optional (defaulting to 0) and allows you to fetch the weather data for the current day (0), tomorrow (1), or the previous day (-1).
+If day_delta is greater than 0, the function uses get_forecast(city, day_delta) to determine the target date and then calls get_weather_data(city) to fetch the weather data for that day.
+It extracts the weather description and temperature in Kelvin (if available) from the response and converts the temperature to Fahrenheit.
+The function returns a string containing the weather description and temperature for the specified city and day. If there are issues with the request or data, it returns None.
+If day_delta is 0, the function calls get_weather_description(city) to fetch the current weather description for the specified city and returns it as a string.
+
+is_sunny()
+This function checks if it is sunny in the specified city.
+The city parameter specifies the city for which you want to check the weather.
+The day_delta parameter (defaulting to 0) allows you to check the current day (0), tomorrow (1), or yesterday (-1).
+It uses the get_weather_description(city) function to retrieve the weather description for the specified city and day.
+If the word "sunny" is found in the weather description (case-insensitive), it returns True, indicating that it's sunny. Otherwise, it returns False to indicate that it's not sunny.
+is_cloudy(city, day_delta=0):
+
+is_cloudy()
+This function checks if it is cloudy in the specified city.
+Similar to the is_sunny function, it takes the city and day_delta parameters.
+It uses the get_weather_description(city) function to retrieve the weather description.
+If the word "cloudy" is found in the weather description (case-insensitive), it returns True, indicating that it's cloudy. Otherwise, it returns False.
+is_raining(city, day_delta=0):
+
+is_raining()
+This function checks if it is raining in the specified city.
+Again, it takes the city and day_delta parameters.
+It uses the get_weather_description(city) function to obtain the weather description.
+If the word "rain" is found in the weather description (case-insensitive), it returns True, indicating that it's raining. Otherwise, it returns False.
+In summary, these functions use the get_weather_description(city) function to retrieve the weather description for the specified city and day. They then search for specific keywords ("sunny," "cloudy," or "rain") in the description to determine whether the weather condition matches the query. If it does, they return True; otherwise, they return False to provide a simplified "Yes" or "No" answer to the user's question about the weather conditions.
+
+
+
+
+

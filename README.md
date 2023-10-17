@@ -1,3 +1,11 @@
+# Directions to run program
+1. Install Python3 on your computer.
+2. Create an account on openweathermap.org and copy the API key
+3. Paste API key where it says "API_KEY =" in main.py
+4. Run the program
+
+
+
 # Assignment 3 part 2 - Create your own chatbot
 
 In assignment 3 you created a chatbot from a movie database.  In this group project (no more than 4 people in a group, or you can work individually) you are tasked to create your own chatbot for something that is more relavant to you.  You can use our solution as a starting point for your own chatbot, or you could do something completely different.  
